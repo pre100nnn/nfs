@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TOKEN = os.getenv("NFS_BOT_TOKEN")
-bot = AsyncTeleBot(TOKEN)
+bot = AsyncTeleBot(os.getenv("NFS_BOT_TOKEN"))
 
 
 # Handle '/start' and '/help'
@@ -19,6 +18,7 @@ async def send_welcome(message):
 @bot.message_handler(func=lambda message: True)
 async def echo_message(message):
     await bot.reply_to(message, message.text)
-print('Бот успешно запущен')
 
-asyncio.run(bot.polling())
+if __name__ == '__main__':
+    print('Бот успешно запущен')
+    asyncio.run(bot.polling())
