@@ -1,4 +1,8 @@
-from src.handlers.welcome import send_welcome
-from src.handlers.message import echo_message
+from .start import register_start_handlers
+from .help import register_help_handlers
 
-__all__ = ["send_welcome", "echo_message"]
+def register_handlers(bot):
+    register_start_handlers(bot)
+    register_help_handlers(bot)
+    # ... другие обработчики
+

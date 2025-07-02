@@ -1,12 +1,11 @@
-import asyncio, os
-from telebot.async_telebot import AsyncTeleBot
-from dotenv import load_dotenv
-from src import handlers # handlers
+import asyncio
+from src.core import bot
+from src.handlers import register_handlers
 
-load_dotenv()
+async def main():
+    register_handlers(bot)  # Регистрация всех обработчиков
+    await bot.polling(non_stop=True)
 
-bot = AsyncTeleBot(os.getenv("NFS_BOT_TOKEN"))
-
-if __name__ == '__main__':
-    print('Бот успешно запущен')
-    asyncio.run(bot.polling())
+if __name__ == "__main__":
+    print ('Бот запущен')
+    asyncio.run(main())
