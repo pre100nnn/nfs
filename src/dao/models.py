@@ -27,7 +27,7 @@ class User(Base):
         return f"<User(id={self.telegram_id}, username='{self.username}')>"
 
 engine = create_engine(
-    os.getenv("NFS_DATA_URL", 'sqlite:///nfs.db'), echo=True)
+    os.getenv("NFS_DATA_URL", "sqlite:///nfs.db"), echo=True)
 
 
 
