@@ -7,5 +7,5 @@ async def main():
     await bot.polling(non_stop=True)
 
 if __name__ == "__main__":
-    print ('Бот запущен')
+    print ('Бот запущен.')
     asyncio.run(main())
