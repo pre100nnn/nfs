@@ -4,7 +4,7 @@ services:
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data
     env_file:
-      - database.env
+      - nfs.env
     ports:
       - "127.0.0.1:5432:5432"
 
