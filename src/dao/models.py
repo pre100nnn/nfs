@@ -1,10 +1,9 @@
 import os
 
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean
+from sqlalchemy import create_engine, Column, String, DateTime, Boolean, BigInteger
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import declarative_base, sessionmaker
-from datetime import datetime
-
+from datetime import datetime, UTC
 
 # Создаем базовый класс для моделей
 Base = declarative_base()
@@ -14,13 +13,13 @@ class User(Base):
     """Модель пользователя"""
     __tablename__ = 'nfs_users'
 
-    telegram_id = Column(Integer, primary_key=True)
+    telegram_id = Column(BigInteger, primary_key=True)
     username = Column(String, nullable=True)
     first_name = Column(String,nullable=False)
     last_name = Column(String,nullable=True)
     is_admin = Column(Boolean,default=False)
     is_active = Column(Boolean,default=True)
-    registered_at = Column(DateTime,default=datetime.utcnow)
+    registered_at = Column(DateTime(timezone=True),default=datetime.now(tz=UTC))
 
 
     def __repr__(self):
@@ -31,13 +30,15 @@ engine = create_engine(
     echo=True
 
 )
+AsyncSessionLocal = None
 
-async_engine = create_async_engine(
-    os.getenv("NFS_DATA_URL", "sqlite+aiosqlite:///nfs.db"),
-    echo=True
-)
+if NFS_ASYNC_DATA_URL:= os.getenv("NFS_ASYNC_DATA_URL"):
+    async_engine = create_async_engine(
+    os.getenv("NFS_ASYNC_DATA_URL", "sqlite+aiosqlite:///nfs.db"),
+         echo=True
+    )
 
-AsyncSessionLocal = sessionmaker(async_engine, expire_on_commit=False, class_=AsyncSession)
+    AsyncSessionLocal = sessionmaker(async_engine, expire_on_commit=False, class_=AsyncSession)
 
 
 
