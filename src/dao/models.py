@@ -19,7 +19,7 @@ class User(Base):
     last_name = Column(String,nullable=True)
     is_admin = Column(Boolean,default=False)
     is_active = Column(Boolean,default=True)
-    registered_at = Column(DateTime,default=datetime.utcnow())
+    registered_at = Column(DateTime,default=datetime.utcnow)
 
 
     def __repr__(self):
