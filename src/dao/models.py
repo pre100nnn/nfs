@@ -1,9 +1,9 @@
 import os
+from datetime import datetime
 
 from sqlalchemy import create_engine, Column, String, DateTime, Boolean, BigInteger
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import declarative_base, sessionmaker
-from datetime import datetime, UTC
 
 # Создаем базовый класс для моделей
 Base = declarative_base()
