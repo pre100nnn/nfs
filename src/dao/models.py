@@ -30,15 +30,15 @@ engine = create_engine(
     echo=True
 
 )
-AsyncSessionLocal = None
 
-if NFS_ASYNC_DATA_URL:= os.getenv("NFS_ASYNC_DATA_URL"):
-    async_engine = create_async_engine(
-    os.getenv("NFS_ASYNC_DATA_URL", "sqlite+aiosqlite:///nfs.db"),
-         echo=True
-    )
+async_engine =create_async_engine(
+    os.getenv("NFS_DATA_URL", "sqlite+aiosqlite:///nfs.db"),
+    echo=True
+)
 
-    AsyncSessionLocal = sessionmaker(async_engine, expire_on_commit=False, class_=AsyncSession)
+AsyncSessionLocal = sessionmaker(async_engine,  class_=AsyncSession, expire_on_commit=False)
+
+
 
 
 
