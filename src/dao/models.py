@@ -32,7 +32,7 @@ engine = create_engine(
 )
 
 async_engine =create_async_engine(
-    os.getenv("NFS_DATA_URL", "sqlite+aiosqlite:///nfs.db"),
+    os.getenv("NFS_ASYNC_DATA_URL", "sqlite+aiosqlite:///nfs.db"),
     echo=True
 )
 
