@@ -1,6 +1,5 @@
 from src.dao.models import AsyncSessionLocal, User
 
-
 def register_start_handlers(bot):
     @bot.message_handler(commands=['start'])
     async def start(message):

@@ -1,6 +1,7 @@
 services:
   database:
     image: postgres:17
+    container_name: nfs-database
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data
     env_file:
